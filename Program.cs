@@ -68,48 +68,60 @@ namespace spelletje
 
                 }
             } while (!isCorrect);
+
             Console.Clear();
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"knighthealth: {KnightHealth}");
-            Console.WriteLine($"goblinhealth: {GoblinHealth}");
-            Console.ResetColor();
 
-            Console.WriteLine("choose your next move carefully:");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("1.Attack");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("2.heal");
-            Console.ResetColor();
-            
-            int.TryParse(Console.ReadLine(), out healOrAttack);
-
-            switch (healOrAttack)
+            while (KnightHealth > 0 && GoblinHealth > 0 )
             {
-                case 1://attack
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine($"you attacked the goblin for 10 damage!");
-                    Console.ResetColor();
-                    GoblinHealth = GoblinHealth - KnightAttack;
-                    break;
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"knighthealth: {KnightHealth}");
+                Console.WriteLine($"goblinhealth: {GoblinHealth}");
+                Console.ResetColor();
 
-                case 2: //heal
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"you healed yourself for 10 points.");
-                    Console.ResetColor();
-                    KnightHealth = KnightHealth + 10;
-                    break;
+                Console.WriteLine("choose your next move carefully:");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("1.Attack");
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("2.heal");
+                Console.ResetColor();
 
-                default: //bij foute ingave 
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("wrong input lowering health by 5 points!");
-                    Console.ResetColor();
-                    KnightHealth = KnightHealth - 3;
-                    break;
+                int.TryParse(Console.ReadLine(), out healOrAttack);
+
+                switch (healOrAttack)
+                {
+                    case 1://attack
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"you attacked the goblin for 10 damage!");
+                        Console.ResetColor();
+                        GoblinHealth = GoblinHealth - KnightAttack;
+                        break;
+
+                    case 2: //heal
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"you healed yourself for 10 points.");
+                        Console.ResetColor();
+                        KnightHealth = KnightHealth + 10;
+                        break;
+
+                    default: //bij foute ingave 
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("wrong input lowering health by 5 points!");
+                        Console.ResetColor();
+                        KnightHealth = KnightHealth - 3;
+                        break;
+
+                        
+                }
+                Console.WriteLine($"you were attacked by the goblin for {GoblinAttack} damage ");
+                KnightHealth = KnightHealth - GoblinAttack;
+
+                
+
             }
-            Console.WriteLine($"you were attacked by the goblin for {GoblinAttack} damage ");
-            KnightHealth = KnightHealth - GoblinAttack;
+
+            
 
 
             Console.WriteLine($"current health knight: {KnightHealth}");
@@ -125,9 +137,9 @@ namespace spelletje
             }
             else if (GoblinHealth <= 0 )
             {
-                endMessage = "you win goblins dead";
+                endMessage = "you win the goblin is dead!";
             }
-
+            Console.Clear();
             Console.WriteLine($"{endMessage}");
             
             
