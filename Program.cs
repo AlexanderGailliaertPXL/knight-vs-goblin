@@ -1,10 +1,4 @@
-﻿using System.Drawing;
-using System.Threading;
-using System.Text;
-using System.ComponentModel.Design;
-
-
-namespace spelletje
+﻿namespace spelletje
 {
     internal class Program
     {
@@ -18,14 +12,14 @@ namespace spelletje
         }
         static void Main(string[] args)
         {
-            
+
             Random random = new Random();
             int GoblinHealth = random.Next(0, 101);
             int KnightHealth = 0;
             int KnightAttack = 10;
-            int GoblinAttack = random.Next(5,16);
+            int GoblinAttack = random.Next(5, 16);
             int healOrAttack;
-            string endMessage ="";
+            string endMessage = "";
 
 
             bool isCorrect;
@@ -53,18 +47,16 @@ namespace spelletje
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please enter a valid number between 0 and 100! ");
-                    Console.ResetColor();                  
+                    Console.ResetColor();
                     Console.WriteLine("");
-
                 }
                 else
                 {
                     Console.Clear();
-                    Console.ForegroundColor= ConsoleColor.Green;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"input correct you knighthealth is saved as: {KnightHealth} healthpoints. ");
                     Console.ResetColor();
                     Console.WriteLine("");
-
 
                 }
             } while (!isCorrect);
@@ -72,7 +64,7 @@ namespace spelletje
             Console.Clear();
 
 
-            while (KnightHealth > 0 && GoblinHealth > 0 )
+            while (KnightHealth > 0 && GoblinHealth > 0) // als ze niet dood zijn checken 
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"knighthealth: {KnightHealth}");
@@ -112,39 +104,37 @@ namespace spelletje
                         KnightHealth = KnightHealth - 3;
                         break;
 
-                        
+
                 }
                 Console.WriteLine($"you were attacked by the goblin for {GoblinAttack} damage ");
                 KnightHealth = KnightHealth - GoblinAttack;
 
-                
 
             }
-
-            
-
 
             Console.WriteLine($"current health knight: {KnightHealth}");
             Console.WriteLine($"current health goblin: {GoblinHealth}");
-            
+
             if (KnightHealth <= 0 && GoblinHealth <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 endMessage = "gelijkspel beide zijn dood ";
+                Console.ResetColor();
             }
             else if (KnightHealth <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 endMessage = "you lost!";
+                Console.ResetColor();
             }
-            else if (GoblinHealth <= 0 )
+            else if (GoblinHealth <= 0)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 endMessage = "you win the goblin is dead!";
+                Console.ResetColor();
             }
             Console.Clear();
             Console.WriteLine($"{endMessage}");
-            
-            
-            
-
         }
     }
 }
