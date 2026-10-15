@@ -20,7 +20,7 @@
             int GoblinAttack = random.Next(5, 16);
             int healOrAttack;
             string endMessage = "";
-
+            bool fullHealth = KnightHealth > 0 && GoblinHealth > 0;
 
             bool isCorrect;
 
@@ -64,7 +64,7 @@
             Console.Clear();
 
 
-            while (KnightHealth > 0 && GoblinHealth > 0) // als ze niet dood zijn checken 
+            while (fullHealth)    // als ze niet dood zijn checken 
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine($"knighthealth: {KnightHealth}");
@@ -78,7 +78,7 @@
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("2.heal");
                 Console.ResetColor();
-
+                Console.Write("enter your choice:");
                 int.TryParse(Console.ReadLine(), out healOrAttack);
 
                 switch (healOrAttack)
@@ -101,7 +101,7 @@
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("wrong input lowering health by 5 points!");
                         Console.ResetColor();
-                        KnightHealth = KnightHealth - 3;
+                        KnightHealth -= 5; 
                         break;
 
 
